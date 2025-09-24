@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陨陌化学虚拟公司[YM Chemistry Virtual Company]</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 现代化UI样式 */
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn {
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">陨陌化学虚拟公司</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">首页</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">关于我们</a>
+                    <a href="https://yunmo-233.github.io/product" target="_blank">产品中心</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">联系我们</a>
+                    <button onclick="openRegisterModal()" class="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                        会员注册
+                    </button>
+                    <button onclick="openModal()" class="ml-4 px-4 py-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+                        免责声明
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="gradient-bg text-white py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">我们的目标</h1>
+            <p class="text-xl mb-8 animate-fade-in delay-100">我们致力于研究化学超VIP物品领域，同时学习反应基理。探索未知领域</p>
+            <a href="https://yunmo-233.github.io/index.html" target="_blank" 
+               class="btn inline-block px-8 py-3 bg-white text-blue-600 rounded-md font-medium hover:bg-gray-100 transition-colors animate-fade-in delay-200">
+                查看产品<a href="https://yunmo-233.github.io/product" target="_blank">
+            </a>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">关于陨陌化学虚拟公司</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-in-left">
+                    <h3 class="text-2xl font-semibold mb-4">我们的使命</h3>
+                    <p class="text-gray-600 mb-6">陨陌化学虚拟公司[YM Chemistry Virtual Company]成立于bilibili，是一所虚拟公司现实并不存在。</p>
+                    <p class="text-gray-600">我们的团队由来自普通高中化学必修和普通高中化学选择性必修组成，拥有丰富的行业经验和深厚的技术积累。</p>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-500 animate-slide-in-right">
+                    <img src="https://picsum.photos/800/500?grayscale" alt="未来科技团队工作场景" 
+                         class="w-full h-auto transition-opacity duration-300 hover:opacity-90">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示 -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">我们的产品</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 产品卡片1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md animate-fade-in delay-100">
+                    <a href="https://example.com/product1" target="_blank">
+                        <img src="https://picsum.photos/400/300?random=1" alt="智能AI助手产品展示" 
+                             class="w-full h-48 object-cover hover:opacity-90 transition-opacity">
+                    </a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">智能AI助手</h3>
+                        <p class="text-gray-600 mb-4">革命性的人工智能助手，提升工作效率300%。</p>
+                        <a href="https://example.com/product1" target="_blank" 
+                           class="text-blue-600 font-medium hover:underline flex items-center">
+                            了解更多 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 产品卡片2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md animate-fade-in delay-200">
+                    <a href="https://example.com/product2" target="_blank">
+                        <img src="https://picsum.photos/400/300?random=2" alt="云计算平台界面截图" 
+                             class="w-full h-48 object-cover hover:opacity-90 transition-opacity">
+                    </a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">未来云平台</h3>
+                        <p class="text-gray-600 mb-4">安全可靠的云计算解决方案，支持弹性扩展。</p>
+                        <a href="https://example.com/product2" target="_blank" 
+                           class="text-blue-600 font-medium hover:underline flex items-center">
+                            了解更多 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 产品卡片3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md animate-fade-in delay-300">
+                    <a href="https://example.com/product3" target="_blank">
+                        <img src="https://picsum.photos/400/300?random=3" alt="量子计算设备" 
+                             class="w-full h-48 object-cover hover:opacity-90 transition-opacity">
+                    </a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">量子实验室</h3>
+                        <p class="text-gray-600 mb-4">突破性的量子计算研究设备。</p>
+                        <a href="https://example.com/product3" target="_blank" 
+                           class="text-blue-600 font-medium hover:underline flex items-center">
+                            了解更多 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="py-8 bg-white border-t">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500">© 2025 陨陌化学虚拟公司 | 保留所有权利</p>
+        </div>
+    </footer>
+
+    <!-- 免责声明弹窗 -->
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-blue-600">免责声明</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="text-gray-700 space-y-4">
+                <p>陨陌化学虚拟公司是一家基于Bilibili平台的虚拟研究机构，所有内容均为虚构，不构成任何实际商业行为。</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>本网站内容仅供娱乐和学习交流使用</li>
+                    <li>不提供任何实际化学产品或服务</li>
+                    <li>所有研究成果均为虚拟构想</li>
+                    <li>图片仅为示例，不代表实际产品</li>
+                </ul>
+                <p>访问者应知悉本网站内容的虚拟性质，并自行承担使用风险。</p>
+            </div>
+            <div class="mt-6 flex justify-between">
+                <button onclick="rejectDisclaimer()" 
+                        class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors">
+                    我拒绝
+                </button>
+                <button onclick="closeModal()" 
+                        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                    我同意
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 会员注册弹窗 -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-blue-600">会员注册</h3>
+                <button onclick="closeRegisterModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="registerForm" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">用户名</label>
+                    <input type="text" id="username" name="username" required
+                           class="form-input w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+                    <input type="password" id="password" name="password" required
+                           class="form-input w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">电子邮箱</label>
+                    <input type="email" id="email" name="email"
+                           class="form-input w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none">
+                </div>
+                <button type="submit" 
+                        class="w-full btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                    注册会员
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 免责声明弹窗控制
+        function openModal() {
+            document.getElementById('disclaimerModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('disclaimerModal').style.display = 'none';
+        }
+        
+        function rejectDisclaimer() {
+            document.body.innerHTML = '<div class="flex items-center justify-center h-screen"><div class="text-center"><h1 class="text-2xl font-bold mb-4">您已拒绝免责声明</h1><p class="text-gray-600">根据您的要求，我们已删除所有内容。</p></div></div>';
+        }
+        
+        // 会员注册弹窗控制
+        function openRegisterModal() {
+            document.getElementById('registerModal').style.display = 'flex';
+        }
+        
+        function closeRegisterModal() {
+            document.getElementById('registerModal').style.display = 'none';
+        }
+        
+        // 会员注册表单处理
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            
+            // 简单的本地存储会员信息
+            const member = {
+                username: username,
+                password: password,
+                email: email,
+                joinDate: new Date().toISOString()
+            };
+            
+            // 存储到localStorage
+            localStorage.setItem('member_' + username, JSON.stringify(member));
+            
+            alert('注册成功！欢迎成为我们的会员');
+            closeRegisterModal();
+        });
+        
+        // 动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-fade-in, .animate-slide-in-left, .animate-slide-in-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0', 'translate-x-0');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animateElements.forEach(el => {
+                if (el.classList.contains('animate-fade-in')) {
+                    el.classList.add('opacity-0', 'transition-all', 'duration-500', 'ease-out');
+                } else if (el.classList.contains('animate-slide-in-left')) {
+                    el.classList.add('opacity-0', 'transform', '-translate-x-8', 'transition-all', 'duration-500', 'ease-out');
+                } else if (el.classList.contains('animate-slide-in-right')) {
+                    el.classList.add('opacity-0', 'transform', 'translate-x-8', 'transition-all', 'duration-500', 'ease-out');
+                }
+                
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+版本2：不包含会员注册功能的HTML文件
+html
+Copy Code
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陨陌化学虚拟公司[YM Chemistry Virtual Company]</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 现代化UI样式 */
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg
